@@ -20,6 +20,7 @@ class App extends React.Component{
 		return (
 			<div>
 				<List cards={this.state.cards} />
+				<List cards={this.state.cards} />
 			</div>
 		);
 	}
@@ -51,10 +52,13 @@ class List extends React.Component{
 	}
 	dragOver(e){
 		e.preventDefault();
+		console.log(this.dragged)
 		this.dragged.style.display = 'none';
-		if(e.target.className === 'placeholder') return;
-		this.over = e.target;
-		e.target.parentNode.insertBefore(placeholder, e.target);
+		console.log(e.target)
+		if(e.target.draggable){
+			this.over = e.target;
+			e.target.parentNode.insertBefore(placeholder, e.target);
+		}
 	}
 	render(){
 		// var listItems = this.state.cards.map(function(data, index){
@@ -76,7 +80,7 @@ class List extends React.Component{
 		});
 
 		return (
-			<ul onDragOver={this.dragOver.bind(this)}>
+			<ul className="list list-unstyled" onDragOver={this.dragOver.bind(this)}>
 				{listItems}
 			</ul>
 		);
