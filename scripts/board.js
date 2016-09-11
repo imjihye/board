@@ -7,7 +7,6 @@ class Content extends React.Component{
 			<App />
 		);
 	}
-
 }
 
 class List extends React.Component{
