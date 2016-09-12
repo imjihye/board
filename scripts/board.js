@@ -6,20 +6,6 @@ class Content extends React.Component{
 		super(props);
 		this.state = {cards:[1,2,3,4,5]};
 	}
-	render(){
-		return (
-			<div>
-				<List cards={this.state.cards} />
-			</div>
-		);
-	}
-}
-
-class List extends React.Component{
-	constructor(props){
-		super(props);
-		this.state = {...props};
-	}
 	dragStart(e){
 		this.dragged = e.currentTarget;
 		e.dataTransfer.effectAllowed='move';
@@ -45,6 +31,31 @@ class List extends React.Component{
 		}
 	}
 	render(){
+		return (
+			<div onDragOver={this.dragOver.bind(this)}>
+				<List cards={this.state.cards} 
+						onDragStart={this.dragStart.bind(this)}
+						onDragEnd={this.dragEnd.bind(this)}/>
+				<List cards={this.state.cards} 
+						onDragStart={this.dragStart.bind(this)}
+						onDragEnd={this.dragEnd.bind(this)}/>
+			</div>
+		);
+	}
+}
+
+class List extends React.Component{
+	constructor(props){
+		super(props);
+		this.state = {...props};
+	}
+	dragStart(e){
+		this.props.onDragStart(e);
+	}
+	dragEnd(e){
+		this.props.onDragEnd(e);
+	}
+	render(){
 		var listItems = this.state.cards.map((value, index) => {
 			return (<li 
 						data-id={index}
@@ -55,7 +66,7 @@ class List extends React.Component{
 					</li>);
 		});
 		return (
-			<ul onDragOver={this.dragOver.bind(this)}>
+			<ul className="list list-unstyled">
 				{listItems}
 			</ul>
 		);
