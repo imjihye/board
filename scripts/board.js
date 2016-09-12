@@ -1,10 +1,16 @@
-var placeholder = document.createElement("li");
-placeholder.className = "placeholder";
+var placeholder = document.createElement('li');
+placeholder.className='placeholder';
 
 class Content extends React.Component{
+	constructor(props){
+		super(props);
+		this.state = {cards:[1,2,3,4,5]};
+	}
 	render(){
 		return (
-			<App />
+			<div>
+				<List cards={this.state.cards} />
+			</div>
 		);
 	}
 }
@@ -15,65 +21,47 @@ class List extends React.Component{
 		this.state = {...props};
 	}
 	dragStart(e){
-	    this.dragged = e.currentTarget;
-	    e.dataTransfer.effectAllowed = 'move';
-	    e.dataTransfer.setData('text/html', this.dragged);
+		this.dragged = e.currentTarget;
+		e.dataTransfer.effectAllowed='move';
+		e.dataTransfer.setData('text/html', this.dragged);
 	}
 	dragEnd(e){
-		this.dragged.style.display='block';
+		this.dragged.style.display='list-item';
 		this.dragged.parentNode.removeChild(placeholder);
 
-		//update state
-		var data = this.state.colors;
-		var from = Number(this.dragged.dataset.id);
-		var to = Number(this.over.dataset.id);
-		if(from<to) to--;
-		data.splice(to, 0, data.splice(from,1)[0]);
-		this.setState({colors:data});
+		var data = this.state.cards;
+		var daragged = this.dragged.dataset.id;
+		var over = this.over.dataset.id;
+
+		data.splice(over, 0, data.splice(daragged, 1)[0]);
+		this.setState({cards:data});
 	}
 	dragOver(e){
 		e.preventDefault();
 		this.dragged.style.display='none';
-		if(e.target.className === 'placeholder') return;
-		this.over = e.target;
-		e.target.parentNode.insertBefore(placeholder, e.target);
+		if(e.target.draggable){
+			this.over = e.target;
+			this.over.parentNode.insertBefore(placeholder, e.target);
+		}
 	}
 	render(){
-		var listItems = this.state.colors.map((item, i) => {
-			return (
-				<li 
-					data-id={i}
-					key={i}
-					draggable='true'
-					onDragEnd={this.dragEnd.bind(this)}
-					onDragStart={this.dragStart.bind(this)}>
-					{item}
-				</li>
-			)
+		var listItems = this.state.cards.map((value, index) => {
+			return (<li 
+						data-id={index}
+						draggable="true"
+						onDragStart={this.dragStart.bind(this)}
+						onDragEnd={this.dragEnd.bind(this)}
+						key={index}>{value}
+					</li>);
 		});
 		return (
 			<ul onDragOver={this.dragOver.bind(this)}>
 				{listItems}
 			</ul>
-		)
+		);
 	}
 }
 
-class App extends React.Component {
-	constructor(props){
-		super(props);
-		this.state = {
-            colors: ['Red', 'Green', 'Blue', 'Yellow', 'Black', 'White', 'Orange']
-        }
-    }
-    render(){
-    	return(
-    		<div>
-    			<List colors={this.state.colors} />
-			</div>
-		);
-    }
-}
 
 ReactDOM.render(
 	<Content />,
