@@ -1,13 +1,16 @@
-ul.list{
-	display: inline-block;
+.list h2{
+	text-transform: capitalize;
+}
+.list ul{
 	width: 170px;
 	background-color: #eee;
-	padding:0;
+	padding:6px;
 }
 
-ul.list li{
+.list ul li{
+	cursor:pointer;
 	background-color:#fff;
 	padding: 2px 5px;
-	margin: 10px 5px;
+	margin:10px;
 	height: 30px;
 }

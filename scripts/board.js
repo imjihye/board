@@ -1,10 +1,10 @@
 var placeholder = document.createElement('li');
-placeholder.className='placeholder';
+placeholder.id='placeholder';
 
 class Content extends React.Component{
 	constructor(props){
 		super(props);
-		this.state = {cards:[1,2,3,4,5]};
+		this.state = {todo:[1,2,3,4,5], done:[1,2,3,4,5]};
 	}
 	dragStart(e){
 		this.dragged = e.currentTarget;
@@ -13,14 +13,20 @@ class Content extends React.Component{
 	}
 	dragEnd(e){
 		this.dragged.style.display='list-item';
-		this.dragged.parentNode.removeChild(placeholder);
+		var node = document.getElementById('placeholder');
+		node.parentNode.removeChild(node);
 
-		var data = this.state.cards;
-		var daragged = this.dragged.dataset.id;
-		var over = this.over.dataset.id;
+		var draggedName = this.dragged.parentNode.dataset.name;
+		var fromList = this.state[draggedName];
+		var fromIndex = this.dragged.dataset.id;
+		var item = fromList.splice(fromIndex, 1)[0];
 
-		data.splice(over, 0, data.splice(daragged, 1)[0]);
-		this.setState({cards:data});
+		var overName = this.over.parentNode.dataset.name;
+		var toList = this.state[overName];
+		var toIndex = this.over.dataset.id;
+
+		toList.splice(toIndex, 0, item);
+		this.setState({draggedName:fromList, overName:toList});
 	}
 	dragOver(e){
 		e.preventDefault();
@@ -33,12 +39,16 @@ class Content extends React.Component{
 	render(){
 		return (
 			<div onDragOver={this.dragOver.bind(this)}>
-				<List cards={this.state.cards} 
-						onDragStart={this.dragStart.bind(this)}
-						onDragEnd={this.dragEnd.bind(this)}/>
-				<List cards={this.state.cards} 
-						onDragStart={this.dragStart.bind(this)}
-						onDragEnd={this.dragEnd.bind(this)}/>
+				<List 
+					name="todo"
+					data={this.state.todo} 
+					onDragStart={this.dragStart.bind(this)}
+					onDragEnd={this.dragEnd.bind(this)}/>
+				<List 
+					name="done"
+					data={this.state.done} 
+					onDragStart={this.dragStart.bind(this)}
+					onDragEnd={this.dragEnd.bind(this)}/>
 			</div>
 		);
 	}
@@ -46,7 +56,7 @@ class Content extends React.Component{
 
 class List extends React.Component{
 	constructor(props){
-		super(props);
+		super(...props);
 		this.state = {...props};
 	}
 	dragStart(e){
@@ -56,7 +66,8 @@ class List extends React.Component{
 		this.props.onDragEnd(e);
 	}
 	render(){
-		var listItems = this.state.cards.map((value, index) => {
+		this.state = {...this.props};
+		var listItems = this.state.data.map((value, index) => {
 			return (<li 
 						data-id={index}
 						draggable="true"
@@ -66,9 +77,12 @@ class List extends React.Component{
 					</li>);
 		});
 		return (
-			<ul className="list list-unstyled">
-				{listItems}
-			</ul>
+			<div className="list col-md-3">
+				<h2>{this.state.name}</h2>
+				<ul data-name={this.state.name} className="list-unstyled">
+					{listItems}
+				</ul>
+			</div>
 		);
 	}
 }
