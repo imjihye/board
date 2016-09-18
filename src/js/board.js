@@ -46,7 +46,7 @@ class Content extends React.Component{
 	render(){
 		return (
 			<div onDragOver={this.dragOver.bind(this)}>
-				<Button>Clik Me!</Button>
+				<Button>Login!</Button>
 				<List 
 					name="todo"
 					data={this.state.todo} 
