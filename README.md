@@ -1,12 +1,8 @@
 # board
 
-
 ## install
-npm install react react-dom bootstrap react-bootstrap babel-preset-react --save
-npm install webpack css-loader style-loader file-loader url-loader babel-core babel-loader babel-preset-es2015 --save-dev
 
-
-https://github.com/shakacode/bootstrap-loader
+npm install 
 
 
 ## Configuring webpack
