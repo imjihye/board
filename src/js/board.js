@@ -1,3 +1,10 @@
+'use strict';
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Button } from 'react-bootstrap';
+
+
 var placeholder = document.createElement('li');
 placeholder.id='placeholder';
 
@@ -39,6 +46,7 @@ class Content extends React.Component{
 	render(){
 		return (
 			<div onDragOver={this.dragOver.bind(this)}>
+				<Button>Clik Me!</Button>
 				<List 
 					name="todo"
 					data={this.state.todo} 
