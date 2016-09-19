@@ -6,7 +6,7 @@ npm install
 
 
 ## Configuring webpack
-
+```
 ├── package.json
 ├── webpack.config.js
 ├── node_modules
@@ -16,7 +16,8 @@ npm install
 │   ├── css
 │   │   └── base.css
 │   │   └── style.css
-│   └── app.js
+│   └── main.js
 └── dist
     ├── bundle.js
     └── index.html
+```
