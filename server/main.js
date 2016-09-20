@@ -3,15 +3,15 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 
 const app = express();
-const port = 3000;
-const devPort = 8123;
+app.set('port', (process.env.PORT || 3000));
+app.set('devPort', (process.env.PORT || 8123));
 
 if(process.env.NODE_ENV === 'development'){
 	const config = require('../webpack.dev.config');
 	let compiler = webpack(config);
 	let devServer = new WebpackDevServer(compiler, config.devServer);
-	devServer.listen(devPort, () => {
-		console.log('dev server start!');
+	devServer.listen(app.get('devPort'), () => {
+		console.log('dev server started! http://localhost:' + app.get('devPort'));
 	});
 }
 
@@ -23,8 +23,8 @@ app.use('/hello', (req, res) => {
 
 import test from './routes/test';
 
-app.use('/test', test);
+app.use('/data', test);
 
-const server = app.listen(port, () => {
-	console.log('server start!');
+const server = app.listen(app.get('port'), () => {
+	console.log('server stared! http://localhost:' + app.get('port'));
 });

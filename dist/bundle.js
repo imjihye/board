@@ -23413,25 +23413,22 @@
 		function Content(props) {
 			_classCallCheck(this, Content);
 
-			// $.ajax({
-			//           crossDomain: true,
-			//           type:"GET",
-			//           contentType: "application/json; charset=utf-8",
-			//      url: '../data.json',
-			//      dataType: 'json',
-			//      success: function(data) {
-			//      	console.log(data)
-			//        // this.setState({data: data});
-			//      }.bind(this),
-			//      error: function(xhr, status, err) {
-			//        console.error(this.props.url, status, err.toString());
-			//      }.bind(this)
-			//    });
-
-
 			var _this = _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).call(this, props));
 
-			_this.state = { todo: [1, 2, 3, 4, 5], done: [1, 2, 3, 4, 5] };
+			_jquery2.default.ajax({
+				crossDomain: true,
+				type: "GET",
+				contentType: "application/json; charset=utf-8",
+				url: '/data',
+				dataType: 'json',
+				success: function (data) {
+					this.state = { todo: data.todo, done: data.done };
+				}.bind(_this),
+				error: function (xhr, status, err) {
+					console.error(this.props.url, status, err.toString());
+				}.bind(_this)
+			});
+
 			return _this;
 		}
 
