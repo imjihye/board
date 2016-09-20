@@ -3,7 +3,7 @@
 var config = {
   entry: ['./src/main.js'],
   output: {
-    path: './dist',
+    path: './build',
     filename: 'bundle.js'
   },
   module: {

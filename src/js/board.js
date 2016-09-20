@@ -12,23 +12,23 @@ class Content extends React.Component{
 	constructor(props){
 		super(props);
 
-		// $.ajax({
-  //           crossDomain: true,
-  //           type:"GET",
-  //           contentType: "application/json; charset=utf-8",
-	 //      url: '../data.json',
-	 //      dataType: 'json',
-	 //      success: function(data) {
-	 //      	console.log(data)
-	 //        // this.setState({data: data});
-	 //      }.bind(this),
-	 //      error: function(xhr, status, err) {
-	 //        console.error(this.props.url, status, err.toString());
-	 //      }.bind(this)
-	 //    });
+		$.ajax({
+            crossDomain: true,
+            type:"GET",
+            contentType: "application/json; charset=utf-8",
+	      url: '../data.json',
+	      dataType: 'json',
+	      success: function(data) {
+	      	console.log(data)
+	        // this.setState({data: data});
+	      }.bind(this),
+	      error: function(xhr, status, err) {
+	        console.error(this.props.url, status, err.toString());
+	      }.bind(this)
+	    });
 
 
-		this.state = {todo:[1,2,3,4,5], done:[1,2,3,4,5]};
+		// this.state = {todo:[1,2,3,4,5], done:[1,2,3,4,5]};
 	}
 	dragStart(e){
 		this.dragged = e.currentTarget;
