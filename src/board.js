@@ -27,6 +27,8 @@ export default class Content extends React.Component{
 				console.error(this.props.url, status, err.toString());
 			}.bind(this)
 	    });
+
+		this.state = {todo:[1,2,3,4,5], done:[1,2,3,4,5]};
 	}
 	dragStart(e){
 		this.dragged = e.currentTarget;

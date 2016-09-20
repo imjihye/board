@@ -68,31 +68,6 @@
 
 	_reactDom2.default.render(_react2.default.createElement(_board2.default, null), document.getElementById('content'));
 
-	// var fs = require('fs');
-	// var path = require('path');
-	// var express = require('express');
-	// var bodyParser = require('body-parser');
-	// var app = express();
-
-	// var FILE_PATH = path.join(__dirname, 'data.json');
-
-	// app.set('port', (process.env.PORT || 3000));
-
-
-	// app.get('/api/data', function(req, res) {
-	//   fs.readFile(FILE_PATH, function(err, data) {
-	//     if (err) {
-	//       console.error(err);
-	//       process.exit(1);
-	//     }
-	//     res.json(JSON.parse(data));
-	//   });
-	// });
-
-	// app.listen(app.get('port'), function() {
-	//   console.log('Server started: http://localhost:' + app.get('port') + '/');
-	// });
-
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
@@ -1940,8 +1915,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./base.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./base.css");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./base.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./base.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1980,8 +1955,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./style.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./style.css");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./style.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./style.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -23422,13 +23397,16 @@
 				url: '/data',
 				dataType: 'json',
 				success: function (data) {
-					this.state = { todo: data.todo, done: data.done };
+					// this.state = {...data};
+					// console.log(this.state);
+					this.state = { todo: [1, 2, 3, 4, 5], done: [1, 2, 3, 4, 5] };
 				}.bind(_this),
 				error: function (xhr, status, err) {
 					console.error(this.props.url, status, err.toString());
 				}.bind(_this)
 			});
 
+			_this.state = { todo: [1, 2, 3, 4, 5], done: [1, 2, 3, 4, 5] };
 			return _this;
 		}
 
