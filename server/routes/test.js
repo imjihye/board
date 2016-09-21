@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
 	});
 });
 
+
 router.get('/test/:id', (req, res) => {
 	res.send(req.params.id);
 });

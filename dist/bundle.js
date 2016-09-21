@@ -23406,7 +23406,7 @@
 				}.bind(_this)
 			});
 
-			_this.state = { todo: [1, 2, 3, 4, 5], done: [1, 2, 3, 4, 5] };
+			// this.state = {todo:[1,2,3,4,5], done:[1,2,3,4,5]};
 			return _this;
 		}
 

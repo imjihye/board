@@ -12,23 +12,18 @@ export default class Content extends React.Component{
 		super(props);
 
 		$.ajax({
-	        crossDomain: true,
+	        async: false,
 	        type:"GET",
 	        contentType: "application/json; charset=utf-8",
 		    url: '/data',
 		    dataType: 'json',
 			success: function(data) {
-				// this.state = {...data};
-				// console.log(this.state);
-				this.state = {todo:[1,2,3,4,5], done:[1,2,3,4,5]};
-
+				this.state = {...data};
 			}.bind(this),
 			error: function(xhr, status, err) {
 				console.error(this.props.url, status, err.toString());
 			}.bind(this)
 	    });
-
-		this.state = {todo:[1,2,3,4,5], done:[1,2,3,4,5]};
 	}
 	dragStart(e){
 		this.dragged = e.currentTarget;
