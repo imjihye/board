@@ -23391,22 +23391,18 @@
 			var _this = _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).call(this, props));
 
 			_jquery2.default.ajax({
-				crossDomain: true,
+				async: false,
 				type: "GET",
 				contentType: "application/json; charset=utf-8",
 				url: '/data',
 				dataType: 'json',
 				success: function (data) {
-					// this.state = {...data};
-					// console.log(this.state);
-					this.state = { todo: [1, 2, 3, 4, 5], done: [1, 2, 3, 4, 5] };
+					this.state = _extends({}, data);
 				}.bind(_this),
 				error: function (xhr, status, err) {
 					console.error(this.props.url, status, err.toString());
 				}.bind(_this)
 			});
-
-			// this.state = {todo:[1,2,3,4,5], done:[1,2,3,4,5]};
 			return _this;
 		}
 
@@ -23457,11 +23453,6 @@
 						null,
 						'Login!'
 					),
-					_react2.default.createElement(List, {
-						name: 'todo',
-						data: this.state.todo,
-						onDragStart: this.dragStart.bind(this),
-						onDragEnd: this.dragEnd.bind(this) }),
 					_react2.default.createElement(List, {
 						name: 'done',
 						data: this.state.done,
@@ -23515,7 +23506,13 @@
 							onDragStart: _this3.dragStart.bind(_this3),
 							onDragEnd: _this3.dragEnd.bind(_this3),
 							key: index },
-						value
+						value,
+						' ',
+						_react2.default.createElement(
+							_reactBootstrap.Button,
+							{ className: 'btn-xs' },
+							'날짜추가'
+						)
 					);
 				});
 				return _react2.default.createElement(

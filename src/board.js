@@ -59,11 +59,11 @@ export default class Content extends React.Component{
 		return (
 			<div onDragOver={this.dragOver.bind(this)}>
 				<Button>Login!</Button>
-				<List 
+				{<List 
 					name="todo"
 					data={this.state.todo} 
 					onDragStart={this.dragStart.bind(this)}
-					onDragEnd={this.dragEnd.bind(this)}/>
+					onDragEnd={this.dragEnd.bind(this)}/>}
 				<List 
 					name="done"
 					data={this.state.done} 
@@ -75,10 +75,10 @@ export default class Content extends React.Component{
 }
 
 class List extends React.Component{
-	constructor(props){
-		super(...props);
-		this.state = {...props};
-	}
+	// constructor(props){
+	// 	super(...props);
+	// 	this.state = {...props};
+	// }
 	dragStart(e){
 		this.props.onDragStart(e);
 	}
@@ -88,12 +88,14 @@ class List extends React.Component{
 	render(){
 		this.state = {...this.props};
 		var listItems = this.state.data.map((value, index) => {
+			let date = value.date || "날짜 추가";
 			return (<li 
 						data-id={index}
 						draggable="true"
 						onDragStart={this.dragStart.bind(this)}
 						onDragEnd={this.dragEnd.bind(this)}
-						key={index}>{value}
+						key={index}>
+					{value.name} <Button className="btn-xs">{date}</Button>
 					</li>);
 		});
 		return (
