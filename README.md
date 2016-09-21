@@ -54,7 +54,7 @@ npm run start or npm run development
 ├── build                       # babel로 컴파일된 서버 빌드 디렉토리
 │   ├── main.js                 # babel로 컴파일된 서버 메인 스크립트
 │   └── routes.js               # babel로 컴파일된 서버 라우드 디렉토리
-│         └── data.js           # babel로 컴파일된 서버 라우드 test 스크립트
+│         └── data.js           # babel로 컴파일된 서버 라우드 data api 스크립트
 ├── server                      # 서버 디렉토리
 │   ├── main.js                 # 서버 메인 스크립트
 │   └── routes.js               # 서버 라우트 디렉토리

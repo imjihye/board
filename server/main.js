@@ -6,6 +6,11 @@ const app = express();
 app.set('port', (process.env.PORT || 3000));
 app.set('devPort', (process.env.PORT || 8123));
 
+app.use(function (req, res, next) {
+  console.log('Time:', Date.now());
+  next();
+});
+
 if(process.env.NODE_ENV === 'development'){
 	const config = require('../webpack.dev.config');
 	let compiler = webpack(config);
@@ -18,7 +23,7 @@ if(process.env.NODE_ENV === 'development'){
 app.use('/', express.static(__dirname + './../dist'));
 
 app.use('/hello', (req, res) => {
-	return res.send('hi~');
+	res.send('hi~');
 });
 
 import data from './routes/data';

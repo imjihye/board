@@ -5,8 +5,8 @@ var webpack = require('webpack');
 var config = {
   entry: [
     './src/index.js',
-    'webpack-dev-server/client?http://localhost:8123',
-    'webpack/hot/only-dev-server'
+    'webpack-dev-server/client?http://localhost:8123', // webpackDevServer host adn port
+    'webpack/hot/only-dev-server' // only prevents reload on syntax errors
   ],
   output: {
     path: '/',
