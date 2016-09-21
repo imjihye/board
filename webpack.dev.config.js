@@ -22,7 +22,7 @@ var config = {
       "*": "http://localhost:3000"
     }
   },
-  plugin: [
+  plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
