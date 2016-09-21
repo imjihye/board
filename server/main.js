@@ -21,9 +21,9 @@ app.use('/hello', (req, res) => {
 	return res.send('hi~');
 });
 
-import test from './routes/test';
+import data from './routes/data';
 
-app.use('/data', test);
+app.use('/data', data);
 
 const server = app.listen(app.get('port'), () => {
 	console.log('server stared! http://localhost:' + app.get('port'));

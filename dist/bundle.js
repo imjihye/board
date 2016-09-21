@@ -23371,8 +23371,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -23454,6 +23452,11 @@
 						'Login!'
 					),
 					_react2.default.createElement(List, {
+						name: 'todo',
+						data: this.state.todo,
+						onDragStart: this.dragStart.bind(this),
+						onDragEnd: this.dragEnd.bind(this) }),
+					_react2.default.createElement(List, {
 						name: 'done',
 						data: this.state.done,
 						onDragStart: this.dragStart.bind(this),
@@ -23470,19 +23473,19 @@
 	var List = function (_React$Component2) {
 		_inherits(List, _React$Component2);
 
-		function List(props) {
-			var _ref;
-
+		function List() {
 			_classCallCheck(this, List);
 
-			var _this2 = _possibleConstructorReturn(this, (_ref = List.__proto__ || Object.getPrototypeOf(List)).call.apply(_ref, [this].concat(_toConsumableArray(props))));
-
-			_this2.state = _extends({}, props);
-			return _this2;
+			return _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).apply(this, arguments));
 		}
 
 		_createClass(List, [{
 			key: 'dragStart',
+
+			// constructor(props){
+			// 	super(...props);
+			// 	this.state = {...props};
+			// }
 			value: function dragStart(e) {
 				this.props.onDragStart(e);
 			}
@@ -23498,6 +23501,7 @@
 
 				this.state = _extends({}, this.props);
 				var listItems = this.state.data.map(function (value, index) {
+					var date = value.date || "날짜 추가";
 					return _react2.default.createElement(
 						'li',
 						{
@@ -23506,12 +23510,12 @@
 							onDragStart: _this3.dragStart.bind(_this3),
 							onDragEnd: _this3.dragEnd.bind(_this3),
 							key: index },
-						value,
+						value.name,
 						' ',
 						_react2.default.createElement(
 							_reactBootstrap.Button,
 							{ className: 'btn-xs' },
-							'날짜추가'
+							date
 						)
 					);
 				});
