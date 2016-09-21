@@ -22,6 +22,7 @@ var config = {
       "*": "http://localhost:3000"
     }
   },
+  devtool: 'source-map',
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
