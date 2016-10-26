@@ -19,7 +19,7 @@ var config = {
     historyApiFallback: true,
     contentBase: './dist',
     proxy: {
-      "*": "http://localhost:3000"
+      "*": "http://localhost:3333"
     }
   },
   devtool: 'source-map',
