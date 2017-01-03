@@ -2,8 +2,9 @@ import express from 'express';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 
+const port = 3003;
 const app = express();
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || port));
 app.set('devPort', (process.env.PORT || 8123));
 
 app.use(function (req, res, next) {
